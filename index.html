@@ -8,6 +8,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         *,
         *::before,
@@ -389,7 +390,7 @@
         }
 
         .hero-chip::before {
-            content: '◆';
+            content: '<i class="fas fa-diamond" style="font-size: 0.7em;"></i>';
             font-size: .5rem
         }
 
@@ -622,7 +623,7 @@
         }
 
         .m-item::after {
-            content: '◆';
+            content: '<i class="fas fa-diamond" style="font-size: 0.7em;"></i>';
             color: var(--gold);
             font-size: .45rem
         }
@@ -2187,6 +2188,57 @@
                 border-bottom: none
             }
         }
+
+        /* Font Awesome Icon Styles */
+        .fas, .far, .fab {
+            display: inline-block;
+            font-style: normal;
+            font-variant: normal;
+            text-rendering: auto;
+            line-height: 1;
+        }
+        
+        .p-emoji i,
+        .mosaic-cell i,
+        .cat-bg i,
+        .ban-img i,
+        #m-emoji i,
+        .c-item-img i {
+            font-size: inherit;
+        }
+        
+        .nav-icon i {
+            font-size: 1.15rem;
+        }
+        
+        .feat-icon i {
+            font-size: 2rem;
+        }
+        
+        .soc-btn i {
+            font-size: .95rem;
+        }
+        
+        .pay-icons i {
+            font-size: 1.4rem;
+        }
+        
+        .ce-icon i {
+            font-size: 3.5rem;
+        }
+        
+        .succ-ico i {
+            font-size: 3.5rem;
+        }
+        
+        .rev-av i {
+            font-size: 1.2rem;
+        }
+        
+        .p-act i {
+            font-size: .95rem;
+        }
+
     </style>
 </head>
 
@@ -2196,7 +2248,7 @@
         <div class="loader-ring"></div>
         <div class="loader-logo">Matmazel Albania</div>
     </div>
-    <div id="notification"><span id="n-ico">✓</span><span id="n-txt">Produkti u shtua!</span></div>
+    <div id="notification"><span id="n-ico"><i class="fas fa-check"></i></span><span id="n-txt">Produkti u shtua!</span></div>
     <div id="search-bar">
         <input type="text" id="search-input" placeholder="Kërko çanta, portofole, bizhuteri...">
         <button id="search-submit" onclick="doSearch()">Kërko</button>
@@ -2213,10 +2265,10 @@
             <li><a onclick="fp('bizhuteri',null);sg('products')">Bizhuteri</a></li>
         </ul>
         <div class="nav-actions">
-            <button class="nav-icon" onclick="toggleSearch()">🔍</button>
-            <button class="nav-icon" style="position:relative" onclick="showWishlist()">🤍<span class="wish-count"
+            <button class="nav-icon" onclick="toggleSearch()"><i class="fas fa-search"></i></button>
+            <button class="nav-icon" style="position:relative" onclick="showWishlist()"><i class="far fa-heart"></i><span class="wish-count"
                     id="wish-count" style="display:none">0</span></button>
-            <button class="nav-icon" style="position:relative" onclick="openCart()">🛍️<span class="cart-badge"
+            <button class="nav-icon" style="position:relative" onclick="openCart()"><i class="fas fa-shopping-bag"></i><span class="cart-badge"
                     id="cart-badge">0</span></button>
         </div>
         <button class="hamburger" onclick="toggleMobile()"><span></span><span></span><span></span></button>
@@ -2245,16 +2297,16 @@
         <div class="hero-right">
             <div class="hero-mosaic">
                 <div class="mosaic-cell" onclick="fp('canta-femra',null);sg('products')">
-                    <span>👜</span><span class="mosaic-label">Çanta Femra</span>
+                    <span><i class="fas fa-shopping-bag"></i></span><span class="mosaic-label">Çanta Femra</span>
                 </div>
                 <div class="mosaic-cell" onclick="fp('portofole',null);sg('products')">
-                    <span>👛</span><span class="mosaic-label">Portofole</span>
+                    <span><i class="fas fa-wallet"></i></span><span class="mosaic-label">Portofole</span>
                 </div>
                 <div class="mosaic-cell" onclick="fp('canta-meshkuj',null);sg('products')">
-                    <span>💼</span><span class="mosaic-label">Çanta Meshkuj</span>
+                    <span><i class="fas fa-briefcase"></i></span><span class="mosaic-label">Çanta Meshkuj</span>
                 </div>
                 <div class="mosaic-cell" onclick="fp('bizhuteri',null);sg('products')">
-                    <span>💍</span><span class="mosaic-label">Bizhuteri</span>
+                    <span><i class="fas fa-gem"></i></span><span class="mosaic-label">Bizhuteri</span>
                 </div>
             </div>
             <div class="hero-badge-float">
@@ -2278,44 +2330,44 @@
 
     <!-- CATEGORIES -->
     <section id="categories">
-        <div class="sec-head"><span class="sec-sup">◆ Koleksionet tona</span>
+        <div class="sec-head"><span class="sec-sup"><i class="fas fa-diamond" style="font-size: 0.7em;"></i> Koleksionet tona</span>
             <h2 class="sec-title">Gjeni stilin tuaj</h2>
         </div>
         <div class="cat-grid">
             <div class="cat-card" onclick="fp('canta-femra',null);sg('products')">
-                <div class="cat-bg">👜</div>
+                <div class="cat-bg"><i class="fas fa-shopping-bag"></i></div>
                 <div class="cat-veil"></div>
                 <div class="cat-info">
                     <div class="cat-tag">Eksklusiv</div>
                     <div class="cat-name">Çanta Femra</div>
-                    <div class="cat-cnt">68 modele</div><button class="cat-arrow">Shiko →</button>
+                    <div class="cat-cnt">68 modele</div><button class="cat-arrow">Shiko <i class="fas fa-arrow-right"></i></button>
                 </div>
             </div>
             <div class="cat-card" onclick="fp('canta-meshkuj',null);sg('products')">
-                <div class="cat-bg">💼</div>
+                <div class="cat-bg"><i class="fas fa-briefcase"></i></div>
                 <div class="cat-veil"></div>
                 <div class="cat-info">
                     <div class="cat-tag">Premium</div>
                     <div class="cat-name">Çanta Meshkuj</div>
-                    <div class="cat-cnt">45 modele</div><button class="cat-arrow">Shiko →</button>
+                    <div class="cat-cnt">45 modele</div><button class="cat-arrow">Shiko <i class="fas fa-arrow-right"></i></button>
                 </div>
             </div>
             <div class="cat-card" onclick="fp('portofole',null);sg('products')">
-                <div class="cat-bg">👛</div>
+                <div class="cat-bg"><i class="fas fa-wallet"></i></div>
                 <div class="cat-veil"></div>
                 <div class="cat-info">
                     <div class="cat-tag">Klasike</div>
                     <div class="cat-name">Portofole</div>
-                    <div class="cat-cnt">52 modele</div><button class="cat-arrow">Shiko →</button>
+                    <div class="cat-cnt">52 modele</div><button class="cat-arrow">Shiko <i class="fas fa-arrow-right"></i></button>
                 </div>
             </div>
             <div class="cat-card" onclick="fp('bizhuteri',null);sg('products')">
-                <div class="cat-bg">💍</div>
+                <div class="cat-bg"><i class="fas fa-gem"></i></div>
                 <div class="cat-veil"></div>
                 <div class="cat-info">
                     <div class="cat-tag">Fisnike</div>
                     <div class="cat-name">Bizhuteri</div>
-                    <div class="cat-cnt">87 modele</div><button class="cat-arrow">Shiko →</button>
+                    <div class="cat-cnt">87 modele</div><button class="cat-arrow">Shiko <i class="fas fa-arrow-right"></i></button>
                 </div>
             </div>
         </div>
@@ -2323,16 +2375,16 @@
 
     <!-- PRODUCTS -->
     <section id="products">
-        <div class="sec-head"><span class="sec-sup">◆ Koleksioni ynë</span>
+        <div class="sec-head"><span class="sec-sup"><i class="fas fa-diamond" style="font-size: 0.7em;"></i> Koleksioni ynë</span>
             <h2 class="sec-title">Produkte të Zgjedhura</h2>
         </div>
         <div class="filter-row" id="filter-row">
             <button class="f-btn active" onclick="fp('all',this)">Të gjitha</button>
-            <button class="f-btn" onclick="fp('canta-femra',this)">👜 Çanta Femra</button>
-            <button class="f-btn" onclick="fp('canta-meshkuj',this)">💼 Çanta Meshkuj</button>
-            <button class="f-btn" onclick="fp('portofole',this)">👛 Portofole</button>
-            <button class="f-btn" onclick="fp('bizhuteri',this)">💍 Bizhuteri</button>
-            <button class="f-btn" onclick="fp('sale',this)">🔥 Sale</button>
+            <button class="f-btn" onclick="fp('canta-femra',this)"><i class="fas fa-shopping-bag"></i> Çanta Femra</button>
+            <button class="f-btn" onclick="fp('canta-meshkuj',this)"><i class="fas fa-briefcase"></i> Çanta Meshkuj</button>
+            <button class="f-btn" onclick="fp('portofole',this)"><i class="fas fa-wallet"></i> Portofole</button>
+            <button class="f-btn" onclick="fp('bizhuteri',this)"><i class="fas fa-gem"></i> Bizhuteri</button>
+            <button class="f-btn" onclick="fp('sale',this)"><i class="fas fa-fire"></i> Sale</button>
         </div>
         <div class="sort-row">
             <span class="res-count" id="res-count">Duke shfaqur produkte</span>
@@ -2350,19 +2402,19 @@
     <!-- FEATURES -->
     <section id="features">
         <div class="feat-grid">
-            <div class="feat-item"><span class="feat-icon">🚚</span>
+            <div class="feat-item"><span class="feat-icon"><i class="fas fa-shipping-fast"></i></span>
                 <div class="feat-title">Dorëzim Falas</div>
                 <p class="feat-txt">Për porosi mbi 3000 Lekë në të gjithë Shqipërinë</p>
             </div>
-            <div class="feat-item"><span class="feat-icon">↩️</span>
+            <div class="feat-item"><span class="feat-icon"><i class="fas fa-undo"></i></span>
                 <div class="feat-title">Kthim 30 Ditë</div>
                 <p class="feat-txt">Ktheni produktin pa asnjë problem brenda 30 ditëve</p>
             </div>
-            <div class="feat-item"><span class="feat-icon">🔐</span>
+            <div class="feat-item"><span class="feat-icon"><i class="fas fa-lock"></i></span>
                 <div class="feat-title">Pagesë e Sigurt</div>
                 <p class="feat-txt">Transaksionet tuaja janë të mbrojtura plotësisht</p>
             </div>
-            <div class="feat-item"><span class="feat-icon">✨</span>
+            <div class="feat-item"><span class="feat-icon"><i class="fas fa-sparkles"></i></span>
                 <div class="feat-title">Garanci Cilësie</div>
                 <p class="feat-txt">Të gjitha produktet kalojnë kontroll të rreptë cilësie</p>
             </div>
@@ -2373,10 +2425,10 @@
     <section id="banner">
         <div class="ban-img">
             <div class="ban-spin">40%<br><small>ZBRITJE</small></div>
-            💎
+            <i class="fas fa-gem"></i>
         </div>
         <div class="ban-cnt">
-            <span class="ban-sup">◆ Ofertë e Kufizuar</span>
+            <span class="ban-sup"><i class="fas fa-diamond" style="font-size: 0.7em;"></i> Ofertë e Kufizuar</span>
             <h2 class="ban-title">Bizhuteri<br><b>Fisnike</b><br>me çmim special</h2>
             <p class="ban-txt">Koleksioni ynë i bizhurerisë argjend dhe ar — tani me zbritje deri 40%. Oferta vlen vetëm
                 këtë javë!</p>
@@ -2388,7 +2440,7 @@
 
     <!-- REVIEWS -->
     <section id="reviews">
-        <div class="sec-head"><span class="sec-sup">◆ Klientët tanë</span>
+        <div class="sec-head"><span class="sec-sup"><i class="fas fa-diamond" style="font-size: 0.7em;"></i> Klientët tanë</span>
             <h2 class="sec-title">Çfarë thonë ata</h2>
         </div>
         <div class="rev-grid">
@@ -2398,7 +2450,7 @@
                 <p class="rev-txt">Çanta që bleva është e mahnitshme — lëkura është e butë dhe aroma është e lëkurës
                     natyrale. Më ka bërë shumë komplimente!</p>
                 <div class="rev-person">
-                    <div class="rev-av">👩</div>
+                    <div class="rev-av"><i class="fas fa-user-circle"></i></div>
                     <div>
                         <div class="rev-name">Elira Mustafa</div>
                         <div class="rev-prod">Çantë Lëkure Milano</div>
@@ -2411,7 +2463,7 @@
                 <p class="rev-txt">Portofolin e bleva për bashkëshortin tim — ai është i mahnitur. Cilësia është si e
                     produkteve luksoze europiane, por me çmim shumë më të mirë.</p>
                 <div class="rev-person">
-                    <div class="rev-av">👩</div>
+                    <div class="rev-av"><i class="fas fa-user-circle"></i></div>
                     <div>
                         <div class="rev-name">Anxhela Domi</div>
                         <div class="rev-prod">Portofol AURË Classic Men</div>
@@ -2424,7 +2476,7 @@
                 <p class="rev-txt">Unaza e argjendtë është gjëja më e bukur që kam blerë online. Mbërriti i paketuar
                     bukur, perfekte si dhuratë. Do të blej sërish patjetër!</p>
                 <div class="rev-person">
-                    <div class="rev-av">👩</div>
+                    <div class="rev-av"><i class="fas fa-user-circle"></i></div>
                     <div>
                         <div class="rev-name">Besa Krasniqi</div>
                         <div class="rev-prod">Unazë Argjend Floral</div>
@@ -2437,7 +2489,7 @@
     <!-- NEWSLETTER -->
     <section id="newsletter">
         <div class="nl-box">
-            <span class="nl-sup">◆ Newsletter</span>
+            <span class="nl-sup"><i class="fas fa-diamond" style="font-size: 0.7em;"></i> Newsletter</span>
             <h2 class="nl-title">Koleksione të reja, çdo javë</h2>
             <p class="nl-txt">Regjistrohu dhe merr 15% zbritje për porosinë e parë plus njoftimet për ardhjet e reja.
             </p>
@@ -2454,8 +2506,8 @@
             <div><span class="foot-logo">AUR<span>Ë</span></span>
                 <p class="foot-desc">Dyqani juaj i aksesoreëve premium në Shqipëri. Çanta, portofole dhe bizhuteri me
                     cilësi të lartë dhe stil të pashkëputur.</p>
-                <div class="soc-row"><button class="soc-btn">📘</button><button class="soc-btn">📸</button><button
-                        class="soc-btn">🎵</button><button class="soc-btn">📌</button></div>
+                <div class="soc-row"><button class="soc-btn"><i class="fab fa-facebook"></i></button><button class="soc-btn"><i class="fab fa-instagram"></i></button><button
+                        class="soc-btn"><i class="fab fa-tiktok"></i></button><button class="soc-btn"><i class="fab fa-pinterest"></i></button></div>
             </div>
             <div>
                 <div class="foot-title">Koleksionet</div>
@@ -2480,16 +2532,16 @@
             <div>
                 <div class="foot-title">Kontakti</div>
                 <ul class="foot-links">
-                    <li><a>📍 Tiranë, Shqipëri</a></li>
-                    <li><a>📞 +355 69 XXX XXXX</a></li>
-                    <li><a>✉️ <span class="__cf_email__" data-cfemail="95fcfbf3fad5f4e0e7f0bbf4f9">[email&#160;protected]</span></a></li>
-                    <li><a>⏰ E Hënë–E Shtunë 9–18</a></li>
+                    <li><a><i class="fas fa-map-marker-alt"></i> Tiranë, Shqipëri</a></li>
+                    <li><a><i class="fas fa-phone"></i> +355 69 XXX XXXX</a></li>
+                    <li><a><i class="fas fa-envelope"></i> <span class="__cf_email__" data-cfemail="95fcfbf3fad5f4e0e7f0bbf4f9">[email&#160;protected]</span></a></li>
+                    <li><a><i class="fas fa-clock"></i> E Hënë–E Shtunë 9–18</a></li>
                 </ul>
             </div>
         </div>
         <div class="foot-bot">
             <p class="foot-copy">© 2025 AURË. Të gjitha të drejtat e rezervuara.</p>
-            <div class="pay-icons"><span>💳</span><span>💳</span><span>💵</span><span>🔒</span></div>
+            <div class="pay-icons"><span><i class="fas fa-credit-card"></i></span><span><i class="fas fa-credit-card"></i></span><span><i class="fas fa-money-bill-wave"></i></span><span><i class="fas fa-lock"></i></span></div>
         </div>
     </footer>
 
@@ -2497,16 +2549,16 @@
     <div id="cart-overlay" onclick="closeCart()"></div>
     <div id="cart-side">
         <div class="cart-head"><span class="cart-ttl">Shporta Ime</span><button class="cart-x"
-                onclick="closeCart()">✕</button></div>
+                onclick="closeCart()"><i class="fas fa-times"></i></button></div>
         <div class="cart-body" id="cart-body">
-            <div class="cart-empty-msg"><span class="ce-icon">🛍️</span>Shporta juaj është bosh</div>
+            <div class="cart-empty-msg"><span class="ce-icon"><i class="fas fa-shopping-bag"></i></span>Shporta juaj është bosh</div>
         </div>
         <div class="cart-foot" id="cart-foot" style="display:none">
             <div class="c-sub"><span>Nëntotali</span><span id="c-sub-v">0 Lekë</span></div>
             <div class="c-sub"><span>Dërgesa</span><span id="c-ship">Falas</span></div>
             <div class="c-tot"><span>Totali</span><span id="c-tot-v">0 Lekë</span></div>
-            <button class="c-chk" onclick="openCheckout()">Vazhdo me Pagesën →</button>
-            <button class="c-cont" onclick="closeCart()">← Vazhdo Blerjet</button>
+            <button class="c-chk" onclick="openCheckout()">Vazhdo me Pagesën <i class="fas fa-arrow-right"></i></button>
+            <button class="c-cont" onclick="closeCart()"><i class="fas fa-arrow-left"></i> Vazhdo Blerjet</button>
         </div>
     </div>
 
@@ -2514,7 +2566,7 @@
     <div id="mod-overlay" onclick="handleModClick(event)">
         <div id="prod-modal" style="display:none">
             <div class="m-img" id="m-img">
-                <button class="m-close" onclick="closeMod()">✕</button>
+                <button class="m-close" onclick="closeMod()"><i class="fas fa-times"></i></button>
                 <span id="m-emoji"></span>
             </div>
             <div class="m-cnt">
@@ -2530,8 +2582,8 @@
                 </div>
                 <div class="m-lbl">Ngjyra / Materiali</div>
                 <div class="col-row" id="m-colors"></div>
-                <button class="m-add" onclick="addFromMod()">Shto në Shportë 🛍️</button>
-                <button class="m-wish" onclick="wishFromMod()">♡ Ruaj në Wishlist</button>
+                <button class="m-add" onclick="addFromMod()">Shto në Shportë <i class="fas fa-shopping-bag"></i></button>
+                <button class="m-wish" onclick="wishFromMod()"><i class="far fa-heart"></i> Ruaj në Wishlist</button>
                 <div class="m-desc" id="m-desc"></div>
                 <div class="m-meta" id="m-meta"></div>
             </div>
@@ -2539,7 +2591,7 @@
         <div id="chk-modal" style="display:none">
             <div id="chk-form">
                 <div class="chk-ttl">Porosit<button class="m-close" onclick="closeMod()"
-                        style="position:relative;top:0;right:0;flex-shrink:0">✕</button></div>
+                        style="position:relative;top:0;right:0;flex-shrink:0"><i class="fas fa-times"></i></button></div>
                 <div class="ord-sum">
                     <div class="os-ttl">Detajet e Porosisë</div>
                     <div id="os-items"></div>
@@ -2569,10 +2621,10 @@
                         </select>
                     </div>
                 </div>
-                <button class="pord-btn" onclick="placeOrder()">Konfirmo Porosinë →</button>
+                <button class="pord-btn" onclick="placeOrder()">Konfirmo Porosinë <i class="fas fa-arrow-right"></i></button>
             </div>
             <div class="succ-screen" id="succ-view">
-                <span class="succ-ico">✅</span>
+                <span class="succ-ico"><i class="fas fa-check-circle"></i></span>
                 <h2 class="succ-ttl">Porosia u vendos!</h2>
                 <p style="color:var(--warm);font-size:.87rem;margin:.5rem 0 1.2rem">Do të merrni konfirmim me email
                     shumë shpejt.</p>
@@ -2586,28 +2638,28 @@
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         const products = [
             // CANTA FEMRA
-            { id: 1, name: 'Çantë Tote Milano', brand: 'AURË Donna', cat: 'canta-femra', emoji: '👜', price: 5800, oldPrice: 8200, rating: 4.9, reviews: 143, tag: 'sale', colors: ['#8B4513', '#1C1410', '#C8A2C8'], mat: 'Lëkurë e butë italiane', sizes: ['S', 'M', 'L'], desc: 'Çantë tote spacioze me hapësirat e brendshme të shumta. Ideal për punë dhe dalje. Lëkurë 100% natyrale me mbushje pambuku.' },
-            { id: 2, name: 'Mini Bag Elegante', brand: 'AURË Donna', cat: 'canta-femra', emoji: '👝', price: 3400, oldPrice: null, rating: 4.7, reviews: 89, tag: 'new', colors: ['#C8A2C8', '#E8C4B8', '#2F4F4F'], mat: 'Lëkurë napa', sizes: ['One Size'], desc: 'Mini çantë me zinxhir të artë, perfekte për mbrëmjet speciale dhe eventeve elegante.' },
-            { id: 3, name: 'Shopper Lëkurë XL', brand: 'AURË Donna', cat: 'canta-femra', emoji: '🛍️', price: 6200, oldPrice: null, rating: 4.8, reviews: 67, tag: 'hot', colors: ['#1C1410', '#8B4513', '#D2B48C'], mat: 'Lëkurë full-grain', sizes: ['L', 'XL'], desc: 'Çantë spacioze shopper me ndarje të brendshme dhe xhepa sekretë. Material full-grain lëkurë.' },
-            { id: 4, name: 'Çantë Mbrëmje Saten', brand: 'AURË Notte', cat: 'canta-femra', emoji: '💜', price: 2900, oldPrice: 4100, rating: 4.6, reviews: 54, tag: 'sale', colors: ['#800080', '#1C1410', '#C0C0C0'], mat: 'Saten & Kadife', sizes: ['One Size'], desc: 'Çantë e vogël mbrëmjeje me material saten dhe detalje kadifeje. Kllapa magnetike.' },
+            { id: 1, name: 'Çantë Tote Milano', brand: 'AURË Donna', cat: 'canta-femra', emoji: '<i class="fas fa-shopping-bag"></i>', price: 5800, oldPrice: 8200, rating: 4.9, reviews: 143, tag: 'sale', colors: ['#8B4513', '#1C1410', '#C8A2C8'], mat: 'Lëkurë e butë italiane', sizes: ['S', 'M', 'L'], desc: 'Çantë tote spacioze me hapësirat e brendshme të shumta. Ideal për punë dhe dalje. Lëkurë 100% natyrale me mbushje pambuku.' },
+            { id: 2, name: 'Mini Bag Elegante', brand: 'AURË Donna', cat: 'canta-femra', emoji: '<i class="fas fa-shopping-bag"></i>', price: 3400, oldPrice: null, rating: 4.7, reviews: 89, tag: 'new', colors: ['#C8A2C8', '#E8C4B8', '#2F4F4F'], mat: 'Lëkurë napa', sizes: ['One Size'], desc: 'Mini çantë me zinxhir të artë, perfekte për mbrëmjet speciale dhe eventeve elegante.' },
+            { id: 3, name: 'Shopper Lëkurë XL', brand: 'AURË Donna', cat: 'canta-femra', emoji: '<i class="fas fa-shopping-bag"></i>', price: 6200, oldPrice: null, rating: 4.8, reviews: 67, tag: 'hot', colors: ['#1C1410', '#8B4513', '#D2B48C'], mat: 'Lëkurë full-grain', sizes: ['L', 'XL'], desc: 'Çantë spacioze shopper me ndarje të brendshme dhe xhepa sekretë. Material full-grain lëkurë.' },
+            { id: 4, name: 'Çantë Mbrëmje Saten', brand: 'AURË Notte', cat: 'canta-femra', emoji: '<i class="fas fa-heart" style="color: purple;"></i>', price: 2900, oldPrice: 4100, rating: 4.6, reviews: 54, tag: 'sale', colors: ['#800080', '#1C1410', '#C0C0C0'], mat: 'Saten & Kadife', sizes: ['One Size'], desc: 'Çantë e vogël mbrëmjeje me material saten dhe detalje kadifeje. Kllapa magnetike.' },
 
             // CANTA MESHKUJ
-            { id: 5, name: 'Briefcase Executive', brand: 'AURË Uomo', cat: 'canta-meshkuj', emoji: '💼', price: 8900, oldPrice: 12000, rating: 4.9, reviews: 112, tag: 'sale', colors: ['#1C1410', '#2F4F4F', '#8B4513'], mat: 'Lëkurë vegjetale italiane', sizes: ['Standard'], desc: 'Briefcase profesionale me ndarje për laptop deri 15.6" dhe shumë xhepa. Lëkurë vegjetale me patinim natyral.' },
-            { id: 6, name: 'Çantë Messenger Casual', brand: 'AURË Uomo', cat: 'canta-meshkuj', emoji: '🎒', price: 4200, oldPrice: null, rating: 4.6, reviews: 78, tag: 'new', colors: ['#2F4F4F', '#1C1410', '#8B8682'], mat: 'Lëkurë & canvas', sizes: ['M', 'L'], desc: 'Çantë messenger e lehtë për përdorim të përditshëm. Ndërthur lëkurë natyrale me kanavacë premium.' },
-            { id: 7, name: 'Travel Bag Weekender', brand: 'AURË Uomo', cat: 'canta-meshkuj', emoji: '🧳', price: 9500, oldPrice: null, rating: 4.8, reviews: 45, tag: 'hot', colors: ['#1C1410', '#8B4513'], mat: 'Lëkurë viçi', sizes: ['L'], desc: 'Çantë e madhe për udhëtime fundjavore. Kapacitet 40L, material lëkurë viçi e qëndrueshme.' },
+            { id: 5, name: 'Briefcase Executive', brand: 'AURË Uomo', cat: 'canta-meshkuj', emoji: '<i class="fas fa-briefcase"></i>', price: 8900, oldPrice: 12000, rating: 4.9, reviews: 112, tag: 'sale', colors: ['#1C1410', '#2F4F4F', '#8B4513'], mat: 'Lëkurë vegjetale italiane', sizes: ['Standard'], desc: 'Briefcase profesionale me ndarje për laptop deri 15.6" dhe shumë xhepa. Lëkurë vegjetale me patinim natyral.' },
+            { id: 6, name: 'Çantë Messenger Casual', brand: 'AURË Uomo', cat: 'canta-meshkuj', emoji: '<i class="fas fa-suitcase"></i>', price: 4200, oldPrice: null, rating: 4.6, reviews: 78, tag: 'new', colors: ['#2F4F4F', '#1C1410', '#8B8682'], mat: 'Lëkurë & canvas', sizes: ['M', 'L'], desc: 'Çantë messenger e lehtë për përdorim të përditshëm. Ndërthur lëkurë natyrale me kanavacë premium.' },
+            { id: 7, name: 'Travel Bag Weekender', brand: 'AURË Uomo', cat: 'canta-meshkuj', emoji: '<i class="fas fa-suitcase-rolling"></i>', price: 9500, oldPrice: null, rating: 4.8, reviews: 45, tag: 'hot', colors: ['#1C1410', '#8B4513'], mat: 'Lëkurë viçi', sizes: ['L'], desc: 'Çantë e madhe për udhëtime fundjavore. Kapacitet 40L, material lëkurë viçi e qëndrueshme.' },
 
             // PORTOFOLE
-            { id: 8, name: 'Portofol Classic Slim Femra', brand: 'AURË Wallet', cat: 'portofole', emoji: '👛', price: 2200, oldPrice: 3000, rating: 4.8, reviews: 198, tag: 'sale', colors: ['#C8A2C8', '#E8C4B8', '#8B4513'], mat: 'Lëkurë e butë', sizes: ['Standarde'], desc: 'Portofol i hollë femrash me 8 xhepa kartash, 1 xhep monedhe me fermoar dhe hapësirë për kartëmonedha.' },
-            { id: 9, name: 'Portofol Bifold Meshkuj', brand: 'AURË Wallet', cat: 'portofole', emoji: '🗂️', price: 1800, oldPrice: null, rating: 4.7, reviews: 165, tag: 'new', colors: ['#1C1410', '#2F4F4F', '#8B4513'], mat: 'Lëkurë vegjetale', sizes: ['Standarde'], desc: 'Portofol klasik bifold me 6 xhepa kartash dhe hapësirë të dyfishtë për kartëmonedha.' },
-            { id: 10, name: 'Portofol Mini Card Holder', brand: 'AURË Wallet', cat: 'portofole', emoji: '💳', price: 1200, oldPrice: 1600, rating: 4.5, reviews: 87, tag: 'sale', colors: ['#C8A2C8', '#1C1410', '#B8955A'], mat: 'Lëkurë saffiano', sizes: ['Mini'], desc: 'Card holder minimal me 4 xhepa kartash. Dizajn ultra-slim perfekt për jetën moderne.' },
-            { id: 11, name: 'Portofol Zip-Around Femra', brand: 'AURË Wallet', cat: 'portofole', emoji: '💼', price: 2800, oldPrice: null, rating: 4.9, reviews: 134, tag: 'hot', colors: ['#8B4513', '#E8C4B8', '#800080'], mat: 'Lëkurë pebble', sizes: ['Standarde', 'L'], desc: 'Portofol i madh me fermoar rreth e rrotull, ideal për femrat që mbajnë shumë gjëra. 12 xhepa kartash.' },
+            { id: 8, name: 'Portofol Classic Slim Femra', brand: 'AURË Wallet', cat: 'portofole', emoji: '<i class="fas fa-wallet"></i>', price: 2200, oldPrice: 3000, rating: 4.8, reviews: 198, tag: 'sale', colors: ['#C8A2C8', '#E8C4B8', '#8B4513'], mat: 'Lëkurë e butë', sizes: ['Standarde'], desc: 'Portofol i hollë femrash me 8 xhepa kartash, 1 xhep monedhe me fermoar dhe hapësirë për kartëmonedha.' },
+            { id: 9, name: 'Portofol Bifold Meshkuj', brand: 'AURË Wallet', cat: 'portofole', emoji: '<i class="fas fa-folder"></i>', price: 1800, oldPrice: null, rating: 4.7, reviews: 165, tag: 'new', colors: ['#1C1410', '#2F4F4F', '#8B4513'], mat: 'Lëkurë vegjetale', sizes: ['Standarde'], desc: 'Portofol klasik bifold me 6 xhepa kartash dhe hapësirë të dyfishtë për kartëmonedha.' },
+            { id: 10, name: 'Portofol Mini Card Holder', brand: 'AURË Wallet', cat: 'portofole', emoji: '<i class="fas fa-credit-card"></i>', price: 1200, oldPrice: 1600, rating: 4.5, reviews: 87, tag: 'sale', colors: ['#C8A2C8', '#1C1410', '#B8955A'], mat: 'Lëkurë saffiano', sizes: ['Mini'], desc: 'Card holder minimal me 4 xhepa kartash. Dizajn ultra-slim perfekt për jetën moderne.' },
+            { id: 11, name: 'Portofol Zip-Around Femra', brand: 'AURË Wallet', cat: 'portofole', emoji: '<i class="fas fa-briefcase"></i>', price: 2800, oldPrice: null, rating: 4.9, reviews: 134, tag: 'hot', colors: ['#8B4513', '#E8C4B8', '#800080'], mat: 'Lëkurë pebble', sizes: ['Standarde', 'L'], desc: 'Portofol i madh me fermoar rreth e rrotull, ideal për femrat që mbajnë shumë gjëra. 12 xhepa kartash.' },
 
             // BIZHUTERI
-            { id: 12, name: 'Vathë Argjend Floral', brand: 'AURË Jewels', cat: 'bizhuteri', emoji: '💍', price: 1400, oldPrice: 2000, rating: 4.9, reviews: 234, tag: 'sale', colors: ['#C0C0C0'], mat: 'Argjend Sterling 925', sizes: ['One Size'], desc: 'Vathë elegante me motive floreale, të bëra nga argjend sterling 925. Hipoalergjike dhe të qëndrueshme.' },
-            { id: 13, name: 'Gërshet Ar 18K', brand: 'AURË Jewels', cat: 'bizhuteri', emoji: '📿', price: 4500, oldPrice: null, rating: 4.8, reviews: 98, tag: 'hot', colors: ['#FFD700'], mat: 'Ar 18 Karate', sizes: ['40cm', '45cm', '50cm'], desc: 'Gërshet delikat i punuar me ar 18 karate. I disponueshëm në tre gjatësi. Fermoar siguri me 2 hapa.' },
-            { id: 14, name: 'Unazë Argjend Minimale', brand: 'AURË Jewels', cat: 'bizhuteri', emoji: '💎', price: 900, oldPrice: 1300, rating: 4.7, reviews: 189, tag: 'sale', colors: ['#C0C0C0'], mat: 'Argjend Sterling 925', sizes: ['52', '54', '56', '58', '60'], desc: 'Unazë minimale e hollë nga argjend sterling 925. Perfekte si dhuratë ose si shtesë e koleksionit tuaj.' },
-            { id: 15, name: 'Byzylyk Artizanal', brand: 'AURË Jewels', cat: 'bizhuteri', emoji: '✨', price: 1600, oldPrice: null, rating: 4.6, reviews: 76, tag: 'new', colors: ['#C0C0C0', '#FFD700', '#B87333'], mat: 'Argjend / Ar / Bronz', sizes: ['S', 'M', 'L'], desc: 'Byzylyk me punë artizanale, i disponueshëm në argjend, ar dhe bronz. Mbyllje rregulluese.' },
-            { id: 16, name: 'Set Bizhuteri Nuse', brand: 'AURË Bridal', cat: 'bizhuteri', emoji: '👑', price: 8500, oldPrice: 12000, rating: 5.0, reviews: 43, tag: 'sale', colors: ['#C0C0C0', '#FFD700'], mat: 'Argjend & Ar 18K', sizes: ['One Size'], desc: 'Set komplet nusërie: vathë, gërshet dhe unazë nga argjend dhe ar 18K. I paketuar në kuti luksur.' },
+            { id: 12, name: 'Vathë Argjend Floral', brand: 'AURË Jewels', cat: 'bizhuteri', emoji: '<i class="fas fa-gem"></i>', price: 1400, oldPrice: 2000, rating: 4.9, reviews: 234, tag: 'sale', colors: ['#C0C0C0'], mat: 'Argjend Sterling 925', sizes: ['One Size'], desc: 'Vathë elegante me motive floreale, të bëra nga argjend sterling 925. Hipoalergjike dhe të qëndrueshme.' },
+            { id: 13, name: 'Gërshet Ar 18K', brand: 'AURË Jewels', cat: 'bizhuteri', emoji: '<i class="fas fa-circle-notch"></i>', price: 4500, oldPrice: null, rating: 4.8, reviews: 98, tag: 'hot', colors: ['#FFD700'], mat: 'Ar 18 Karate', sizes: ['40cm', '45cm', '50cm'], desc: 'Gërshet delikat i punuar me ar 18 karate. I disponueshëm në tre gjatësi. Fermoar siguri me 2 hapa.' },
+            { id: 14, name: 'Unazë Argjend Minimale', brand: 'AURË Jewels', cat: 'bizhuteri', emoji: '<i class="fas fa-gem"></i>', price: 900, oldPrice: 1300, rating: 4.7, reviews: 189, tag: 'sale', colors: ['#C0C0C0'], mat: 'Argjend Sterling 925', sizes: ['52', '54', '56', '58', '60'], desc: 'Unazë minimale e hollë nga argjend sterling 925. Perfekte si dhuratë ose si shtesë e koleksionit tuaj.' },
+            { id: 15, name: 'Byzylyk Artizanal', brand: 'AURË Jewels', cat: 'bizhuteri', emoji: '<i class="fas fa-sparkles"></i>', price: 1600, oldPrice: null, rating: 4.6, reviews: 76, tag: 'new', colors: ['#C0C0C0', '#FFD700', '#B87333'], mat: 'Argjend / Ar / Bronz', sizes: ['S', 'M', 'L'], desc: 'Byzylyk me punë artizanale, i disponueshëm në argjend, ar dhe bronz. Mbyllje rregulluese.' },
+            { id: 16, name: 'Set Bizhuteri Nuse', brand: 'AURË Bridal', cat: 'bizhuteri', emoji: '<i class="fas fa-crown"></i>', price: 8500, oldPrice: 12000, rating: 5.0, reviews: 43, tag: 'sale', colors: ['#C0C0C0', '#FFD700'], mat: 'Argjend & Ar 18K', sizes: ['One Size'], desc: 'Set komplet nusërie: vathë, gërshet dhe unazë nga argjend dhe ar 18K. I paketuar në kuti luksur.' },
         ];
 
         let cart = [], wishlist = [], curFilter = 'all', curSort = 'default', visibleCnt = 12, curProd = null, selSz = null, selCol = null;
@@ -2637,10 +2689,10 @@
                 const c = document.createElement('div'); c.className = 'p-card'; c.style.animationDelay = `${i * .06}s`;
                 c.innerHTML = `
       <div class="p-img" onclick="openMod(event,${p.id})">
-        ${p.tag ? `<span class="p-tag tag-${p.tag}">${p.tag === 'new' ? 'I Ri' : p.tag === 'sale' ? 'Sale' : p.tag === 'hot' ? '🔥 Hot' : 'Ltd'}</span>` : ''}
+        ${p.tag ? `<span class="p-tag tag-${p.tag}">${p.tag === 'new' ? 'I Ri' : p.tag === 'sale' ? 'Sale' : p.tag === 'hot' ? '<i class="fas fa-fire"></i> Hot' : 'Ltd'}</span>` : ''}
         <div class="p-acts">
-          <button class="p-act ${wd ? 'liked' : ''}" onclick="toggleWish(event,${p.id})">${wd ? '❤️' : '🤍'}</button>
-          <button class="p-act" onclick="openMod(event,${p.id})">🔍</button>
+          <button class="p-act ${wd ? 'liked' : ''}" onclick="toggleWish(event,${p.id})">${wd ? '<i class="fas fa-heart"></i>' : '<i class="far fa-heart"></i>'}</button>
+          <button class="p-act" onclick="openMod(event,${p.id})"><i class="fas fa-search"></i></button>
         </div>
         <span class="p-emoji">${p.emoji}</span>
         <button class="p-qadd" onclick="quickAdd(event,${p.id})">+ Shto në Shportë</button>
@@ -2672,7 +2724,7 @@
         function addToCart(prod, sz, col) {
             const ex = cart.find(i => i.id === prod.id && i.sz === sz);
             if (ex) ex.qty++; else cart.push({ ...prod, sz: sz || prod.sizes[0], col: col || prod.colors[0], qty: 1 });
-            saveCart(); updCartBadge(); showNotif('✓', `${prod.name} u shtua në shportë!`);
+            saveCart(); updCartBadge(); showNotif('<i class="fas fa-check"></i>', `${prod.name} u shtua në shportë!`);
         }
 
         function openMod(e, id) {
@@ -2687,7 +2739,7 @@
             document.getElementById('m-price').textContent = `${p.price.toLocaleString()} Lekë`;
             document.getElementById('m-oprice').textContent = p.oldPrice ? `${p.oldPrice.toLocaleString()} Lekë` : '';
             document.getElementById('m-desc').textContent = p.desc;
-            document.getElementById('m-meta').innerHTML = `<span>📦 ${p.mat}</span><span>✅ Në gjendje</span><span>🚚 2-3 ditë</span>`;
+            document.getElementById('m-meta').innerHTML = `<span><i class="fas fa-box"></i> ${p.mat}</span><span><i class="fas fa-check-circle"></i> Në gjendje</span><span><i class="fas fa-shipping-fast"></i> 2-3 ditë</span>`;
             const szLbl = p.cat === 'bizhuteri' ? 'Madhësia / Nr.' : 'Madhësia';
             document.getElementById('sz-lbl').textContent = szLbl;
             document.getElementById('m-sizes').innerHTML = p.sizes.map((s, i) => `<button class="sz-btn ${i === 0 ? 'sel' : ''}" onclick="selSize(this,'${s}')">${s}</button>`).join('');
@@ -2711,7 +2763,7 @@
         function closeCart() { document.getElementById('cart-overlay').classList.remove('open'); document.getElementById('cart-side').classList.remove('open'); }
         function renderCart() {
             const body = document.getElementById('cart-body'), foot = document.getElementById('cart-foot');
-            if (cart.length === 0) { body.innerHTML = '<div class="cart-empty-msg"><span class="ce-icon">🛍️</span>Shporta juaj është bosh</div>'; foot.style.display = 'none'; return; }
+            if (cart.length === 0) { body.innerHTML = '<div class="cart-empty-msg"><span class="ce-icon"><i class="fas fa-shopping-bag"></i></span>Shporta juaj është bosh</div>'; foot.style.display = 'none'; return; }
             foot.style.display = 'block';
             const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
             const ship = total >= 3000 ? 0 : 300;
@@ -2729,7 +2781,7 @@
       </div>
       <div style="display:flex;flex-direction:column;align-items:flex-end;gap:5px">
         <span class="c-iprice">${(item.price * item.qty).toLocaleString()} Lekë</span>
-        <button class="c-irm" onclick="rmItem(${item.id},'${item.sz}')">✕</button>
+        <button class="c-irm" onclick="rmItem(${item.id},'${item.sz}')"><i class="fas fa-times"></i></button>
       </div>
     </div>`).join('');
             document.getElementById('c-sub-v').textContent = `${total.toLocaleString()} Lekë`;
@@ -2753,7 +2805,7 @@
         }
         function placeOrder() {
             const n = document.getElementById('f-name').value.trim(), em = document.getElementById('f-email').value.trim(), ph = document.getElementById('f-phone').value.trim(), ad = document.getElementById('f-addr').value.trim();
-            if (!n || !em || !ph || !ad) { showNotif('⚠️', 'Plotësoni fushat e detyrueshme!'); return; }
+            if (!n || !em || !ph || !ad) { showNotif('<i class="fas fa-exclamation-triangle"></i>', 'Plotësoni fushat e detyrueshme!'); return; }
             document.getElementById('ord-num').textContent = `Numri i Porosisë: #AUR${Date.now().toString().slice(-5)}`;
             document.getElementById('chk-form').style.display = 'none';
             document.getElementById('succ-view').classList.add('on');
@@ -2761,19 +2813,19 @@
 
         function toggleWish(e, id) {
             e && e.stopPropagation();
-            if (wishlist.includes(id)) { wishlist = wishlist.filter(x => x !== id); showNotif('♡', 'Hequr nga Wishlist'); }
-            else { wishlist.push(id); showNotif('❤️', 'Shtuar në Wishlist!'); }
+            if (wishlist.includes(id)) { wishlist = wishlist.filter(x => x !== id); showNotif('<i class="far fa-heart"></i>', 'Hequr nga Wishlist'); }
+            else { wishlist.push(id); showNotif('<i class="fas fa-heart"></i>', 'Shtuar në Wishlist!'); }
             try { localStorage.setItem('aure-wish', JSON.stringify(wishlist)); } catch (e) { }
             updWishBadge(); renderProds();
         }
         function updWishBadge() { const b = document.getElementById('wish-count'); b.textContent = wishlist.length; b.style.display = wishlist.length > 0 ? 'flex' : 'none'; }
         function showWishlist() {
-            if (wishlist.length === 0) { showNotif('♡', 'Wishlist-i është bosh'); return; }
+            if (wishlist.length === 0) { showNotif('<i class="far fa-heart"></i>', 'Wishlist-i është bosh'); return; }
             const wlist = products.filter(p => wishlist.includes(p.id));
             const grid = document.getElementById('prod-grid'); grid.innerHTML = '';
             document.getElementById('res-count').textContent = `Wishlist: ${wlist.length} produkte`;
             document.getElementById('lm-btn').style.display = 'none';
-            wlist.forEach((p, i) => { const c = document.createElement('div'); c.className = 'p-card'; c.style.animationDelay = `${i * .06}s`; c.innerHTML = `<div class="p-img" onclick="openMod(event,${p.id})"><div class="p-acts" style="transform:translateX(0)"><button class="p-act liked" onclick="toggleWish(event,${p.id})">❤️</button></div><span class="p-emoji">${p.emoji}</span><button class="p-qadd" onclick="quickAdd(event,${p.id})">+ Shto në Shportë</button></div><div class="p-info"><div class="p-brand">${p.brand}</div><div class="p-name">${p.name}</div><div class="p-price"><span class="p-cur">${p.price.toLocaleString()} Lekë</span></div><div class="p-mat">${p.mat}</div></div>`; grid.appendChild(c); });
+            wlist.forEach((p, i) => { const c = document.createElement('div'); c.className = 'p-card'; c.style.animationDelay = `${i * .06}s`; c.innerHTML = `<div class="p-img" onclick="openMod(event,${p.id})"><div class="p-acts" style="transform:translateX(0)"><button class="p-act liked" onclick="toggleWish(event,${p.id})"><i class="fas fa-heart"></i></button></div><span class="p-emoji">${p.emoji}</span><button class="p-qadd" onclick="quickAdd(event,${p.id})">+ Shto në Shportë</button></div><div class="p-info"><div class="p-brand">${p.brand}</div><div class="p-name">${p.name}</div><div class="p-price"><span class="p-cur">${p.price.toLocaleString()} Lekë</span></div><div class="p-mat">${p.mat}</div></div>`; grid.appendChild(c); });
             sg('products');
         }
 
@@ -2787,15 +2839,15 @@
             document.getElementById('res-count').textContent = `Rezultate për "${q}": ${res.length}`;
             document.getElementById('lm-btn').style.display = 'none';
             if (!res.length) { grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:60px;font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--warm)">Nuk u gjet asnjë produkt për "${q}"</div>`; }
-            else res.forEach((p, i) => { const c = document.createElement('div'); c.className = 'p-card'; c.style.animationDelay = `${i * .06}s`; c.innerHTML = `<div class="p-img" onclick="openMod(event,${p.id})">${p.tag ? `<span class="p-tag tag-${p.tag}">${p.tag === 'new' ? 'I Ri' : p.tag === 'sale' ? 'Sale' : '🔥 Hot'}</span>` : ''}<span class="p-emoji">${p.emoji}</span><button class="p-qadd" onclick="quickAdd(event,${p.id})">+ Shto në Shportë</button></div><div class="p-info"><div class="p-brand">${p.brand}</div><div class="p-name">${p.name}</div><div class="p-price"><span class="p-cur">${p.price.toLocaleString()} Lekë</span>${p.oldPrice ? `<span class="p-old">${p.oldPrice.toLocaleString()} Lekë</span>` : ''}</div><div class="p-mat">${p.mat}</div></div>`; grid.appendChild(c); });
+            else res.forEach((p, i) => { const c = document.createElement('div'); c.className = 'p-card'; c.style.animationDelay = `${i * .06}s`; c.innerHTML = `<div class="p-img" onclick="openMod(event,${p.id})">${p.tag ? `<span class="p-tag tag-${p.tag}">${p.tag === 'new' ? 'I Ri' : p.tag === 'sale' ? 'Sale' : '<i class="fas fa-fire"></i> Hot'}</span>` : ''}<span class="p-emoji">${p.emoji}</span><button class="p-qadd" onclick="quickAdd(event,${p.id})">+ Shto në Shportë</button></div><div class="p-info"><div class="p-brand">${p.brand}</div><div class="p-name">${p.name}</div><div class="p-price"><span class="p-cur">${p.price.toLocaleString()} Lekë</span>${p.oldPrice ? `<span class="p-old">${p.oldPrice.toLocaleString()} Lekë</span>` : ''}</div><div class="p-mat">${p.mat}</div></div>`; grid.appendChild(c); });
             sg('products');
         }
         document.getElementById('search-input').addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(); if (e.key === 'Escape') toggleSearch(); });
 
         function subNewsletter() {
             const em = document.getElementById('nl-email').value.trim();
-            if (!em || !em.includes('@')) { showNotif('⚠️', 'Shkruani një email valid!'); return; }
-            document.getElementById('nl-email').value = ''; showNotif('✉️', 'U regjistruat! +15% zbritje ju pret!');
+            if (!em || !em.includes('@')) { showNotif('<i class="fas fa-exclamation-triangle"></i>', 'Shkruani një email valid!'); return; }
+            document.getElementById('nl-email').value = ''; showNotif('<i class="fas fa-envelope"></i>', 'U regjistruat! +15% zbritje ju pret!');
         }
 
         let ntTimer = null;
