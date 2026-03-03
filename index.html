@@ -347,7 +347,7 @@
         #hero {
             min-height: 100vh;
             display: grid;
-            grid-template-columns: 55% 45%;
+            grid-template-columns: 50% 50%;
             padding-top: 70px;
             overflow: hidden;
             background: var(--cream)
@@ -358,7 +358,8 @@
             flex-direction: column;
             justify-content: center;
             padding: 7% 6% 7% 8%;
-            animation: fadeUp .9s ease .4s both
+            animation: fadeUp .9s ease .4s both;
+            z-index: 1
         }
 
         @keyframes fadeUp {
@@ -508,47 +509,95 @@
         .hero-mosaic {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            grid-template-rows: 1fr 1fr;
+            grid-template-rows: 60% 40%;
             height: 100%;
-            gap: 2px
+            gap: 3px
         }
 
         .mosaic-cell {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-end;
+            padding-bottom: 1.6rem;
             font-size: 5.5rem;
-            background: rgba(255, 255, 255, .03);
-            transition: background .4s;
             cursor: pointer;
             position: relative;
-            overflow: hidden
+            overflow: hidden;
+            background: var(--deep)
         }
 
-        .mosaic-cell:hover {
-            background: rgba(184, 149, 90, .08)
+        /* foto background */
+        .mosaic-cell-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform .7s cubic-bezier(.25,.46,.45,.94), opacity .4s;
+            opacity: .75
         }
 
+        /* overlay e errët mbi foto */
+        .mosaic-cell::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(28,20,16,.85) 0%, rgba(28,20,16,.25) 50%, rgba(28,20,16,.1) 100%);
+            transition: background .4s;
+            z-index: 1
+        }
+
+        .mosaic-cell:hover::after {
+            background: linear-gradient(to top, rgba(184,149,90,.55) 0%, rgba(28,20,16,.15) 60%, transparent 100%)
+        }
+
+        .mosaic-cell:hover .mosaic-cell-bg {
+            transform: scale(1.07);
+            opacity: .9
+        }
+
+        /* ikona dhe label mbi foto */
+        .mosaic-cell > span:first-of-type {
+            position: relative;
+            z-index: 2;
+            color: rgba(255,255,255,.9);
+            font-size: 2.8rem;
+            margin-bottom: .5rem;
+            transition: transform .4s, color .3s;
+            text-shadow: 0 2px 12px rgba(0,0,0,.4)
+        }
+
+        .mosaic-cell:hover > span:first-of-type {
+            transform: scale(1.15) translateY(-4px);
+            color: var(--gold)
+        }
+
+        /* qeliza e parë — e madhe, span 2 rreshta */
         .mosaic-cell:first-child {
             grid-row: span 2;
-            font-size: 7rem
+            padding-bottom: 2.2rem
+        }
+
+        .mosaic-cell:first-child > span:first-of-type {
+            font-size: 3.8rem
         }
 
         .mosaic-label {
-            position: absolute;
-            bottom: 14px;
-            left: 0;
-            right: 0;
-            text-align: center;
-            font-size: .65rem;
-            letter-spacing: .2em;
+            position: relative;
+            z-index: 2;
+            font-size: .62rem;
+            letter-spacing: .22em;
             text-transform: uppercase;
-            color: rgba(255, 255, 255, .5);
-            transition: color .3s
+            color: rgba(255,255,255,.65);
+            transition: color .3s, transform .3s;
+            text-shadow: 0 1px 6px rgba(0,0,0,.5)
         }
 
         .mosaic-cell:hover .mosaic-label {
-            color: var(--gold)
+            color: #fff;
+            transform: translateY(-2px)
         }
 
         .hero-badge-float {
@@ -690,19 +739,37 @@
             filter: drop-shadow(0 20px 40px rgba(0, 0, 0, .4))
         }
 
-        .cat-card:hover .cat-bg {
-            transform: scale(1.12)
+        /* foto reale nga Contentful */
+        .cat-bg-photo {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform .7s cubic-bezier(.25, .46, .45, .94);
+            opacity: 1
+        }
+
+        .cat-card:hover .cat-bg-photo {
+            transform: scale(1.1)
+        }
+
+        /* kur ka foto, fshih ikonën */
+        .cat-card.has-photo .cat-bg {
+            opacity: 0
         }
 
         .cat-veil {
             position: absolute;
             inset: 0;
-            background: linear-gradient(160deg, rgba(28, 20, 16, .15) 0%, rgba(28, 20, 16, .7) 100%);
-            transition: background .4s
+            background: linear-gradient(170deg, rgba(28,20,16,.05) 0%, rgba(28,20,16,.45) 45%, rgba(28,20,16,.82) 100%);
+            transition: background .5s;
+            z-index: 1
         }
 
         .cat-card:hover .cat-veil {
-            background: linear-gradient(160deg, rgba(28, 20, 16, .2) 0%, rgba(28, 20, 16, .85) 100%)
+            background: linear-gradient(170deg, rgba(28,20,16,.1) 0%, rgba(28,20,16,.5) 45%, rgba(28,20,16,.9) 100%)
         }
 
         .cat-info {
@@ -712,7 +779,8 @@
             right: 0;
             padding: 32px 30px;
             transform: translateY(40px);
-            transition: transform .4s cubic-bezier(.25, .46, .45, .94)
+            transition: transform .4s cubic-bezier(.25, .46, .45, .94);
+            z-index: 2
         }
 
         .cat-card:hover .cat-info {
@@ -863,9 +931,39 @@
             overflow: hidden
         }
 
+        .p-img-photo {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform .6s cubic-bezier(.25, .46, .45, .94)
+        }
+
+        .p-card:hover .p-img-photo {
+            transform: scale(1.06)
+        }
+
+        .m-img-photo {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block
+        }
+
+        #m-emoji {
+            position: relative;
+            z-index: 1
+        }
+
         .p-emoji {
             font-size: 6.5rem;
-            transition: transform .6s cubic-bezier(.25, .46, .45, .94)
+            transition: transform .6s cubic-bezier(.25, .46, .45, .94);
+            position: relative;
+            z-index: 1
         }
 
         .p-card:hover .p-emoji {
@@ -1745,7 +1843,8 @@
             justify-content: center;
             min-height: 380px;
             position: relative;
-            font-size: 7.5rem
+            font-size: 7.5rem;
+            overflow: hidden
         }
 
         .m-close {
@@ -2190,14 +2289,16 @@
         }
 
         /* Font Awesome Icon Styles */
-        .fas, .far, .fab {
+        .fas,
+        .far,
+        .fab {
             display: inline-block;
             font-style: normal;
             font-variant: normal;
             text-rendering: auto;
             line-height: 1;
         }
-        
+
         .p-emoji i,
         .mosaic-cell i,
         .cat-bg i,
@@ -2206,39 +2307,38 @@
         .c-item-img i {
             font-size: inherit;
         }
-        
+
         .nav-icon i {
             font-size: 1.15rem;
         }
-        
+
         .feat-icon i {
             font-size: 2rem;
         }
-        
+
         .soc-btn i {
             font-size: .95rem;
         }
-        
+
         .pay-icons i {
             font-size: 1.4rem;
         }
-        
+
         .ce-icon i {
             font-size: 3.5rem;
         }
-        
+
         .succ-ico i {
             font-size: 3.5rem;
         }
-        
+
         .rev-av i {
             font-size: 1.2rem;
         }
-        
+
         .p-act i {
             font-size: .95rem;
         }
-
     </style>
 </head>
 
@@ -2248,7 +2348,8 @@
         <div class="loader-ring"></div>
         <div class="loader-logo">Matmazel Albania</div>
     </div>
-    <div id="notification"><span id="n-ico"><i class="fas fa-check"></i></span><span id="n-txt">Produkti u shtua!</span></div>
+    <div id="notification"><span id="n-ico"><i class="fas fa-check"></i></span><span id="n-txt">Produkti u shtua!</span>
+    </div>
     <div id="search-bar">
         <input type="text" id="search-input" placeholder="Kërko çanta, portofole, bizhuteri...">
         <button id="search-submit" onclick="doSearch()">Kërko</button>
@@ -2266,10 +2367,11 @@
         </ul>
         <div class="nav-actions">
             <button class="nav-icon" onclick="toggleSearch()"><i class="fas fa-search"></i></button>
-            <button class="nav-icon" style="position:relative" onclick="showWishlist()"><i class="far fa-heart"></i><span class="wish-count"
-                    id="wish-count" style="display:none">0</span></button>
-            <button class="nav-icon" style="position:relative" onclick="openCart()"><i class="fas fa-shopping-bag"></i><span class="cart-badge"
-                    id="cart-badge">0</span></button>
+            <button class="nav-icon" style="position:relative" onclick="showWishlist()"><i
+                    class="far fa-heart"></i><span class="wish-count" id="wish-count"
+                    style="display:none">0</span></button>
+            <button class="nav-icon" style="position:relative" onclick="openCart()"><i
+                    class="fas fa-shopping-bag"></i><span class="cart-badge" id="cart-badge">0</span></button>
         </div>
         <button class="hamburger" onclick="toggleMobile()"><span></span><span></span><span></span></button>
     </nav>
@@ -2296,16 +2398,20 @@
         </div>
         <div class="hero-right">
             <div class="hero-mosaic">
-                <div class="mosaic-cell" onclick="fp('canta-femra',null);sg('products')">
+                <div class="mosaic-cell" data-cat="canta-femra" onclick="fp('canta-femra',null);sg('products')">
+                    <img class="mosaic-cell-bg" id="bg-canta-femra" src="" alt="Çanta Femra">
                     <span><i class="fas fa-shopping-bag"></i></span><span class="mosaic-label">Çanta Femra</span>
                 </div>
-                <div class="mosaic-cell" onclick="fp('portofole',null);sg('products')">
+                <div class="mosaic-cell" data-cat="portofole" onclick="fp('portofole',null);sg('products')">
+                    <img class="mosaic-cell-bg" id="bg-portofole" src="" alt="Portofole">
                     <span><i class="fas fa-wallet"></i></span><span class="mosaic-label">Portofole</span>
                 </div>
-                <div class="mosaic-cell" onclick="fp('canta-meshkuj',null);sg('products')">
+                <div class="mosaic-cell" data-cat="canta-meshkuj" onclick="fp('canta-meshkuj',null);sg('products')">
+                    <img class="mosaic-cell-bg" id="bg-canta-meshkuj" src="" alt="Çanta Meshkuj">
                     <span><i class="fas fa-briefcase"></i></span><span class="mosaic-label">Çanta Meshkuj</span>
                 </div>
-                <div class="mosaic-cell" onclick="fp('bizhuteri',null);sg('products')">
+                <div class="mosaic-cell" data-cat="bizhuteri" onclick="fp('bizhuteri',null);sg('products')">
+                    <img class="mosaic-cell-bg" id="bg-bizhuteri" src="" alt="Bizhuteri">
                     <span><i class="fas fa-gem"></i></span><span class="mosaic-label">Bizhuteri</span>
                 </div>
             </div>
@@ -2330,44 +2436,53 @@
 
     <!-- CATEGORIES -->
     <section id="categories">
-        <div class="sec-head"><span class="sec-sup"><i class="fas fa-diamond" style="font-size: 0.7em;"></i> Koleksionet tona</span>
+        <div class="sec-head"><span class="sec-sup"><i class="fas fa-diamond" style="font-size: 0.7em;"></i> Koleksionet
+                tona</span>
             <h2 class="sec-title">Gjeni stilin tuaj</h2>
         </div>
         <div class="cat-grid">
-            <div class="cat-card" onclick="fp('canta-femra',null);sg('products')">
+            <div class="cat-card" data-cat="canta-femra" onclick="fp('canta-femra',null);sg('products')">
+                <img class="cat-bg-photo" id="cat-photo-canta-femra" src="" alt="Çanta Femra" style="opacity:0">
                 <div class="cat-bg"><i class="fas fa-shopping-bag"></i></div>
                 <div class="cat-veil"></div>
                 <div class="cat-info">
                     <div class="cat-tag">Eksklusiv</div>
                     <div class="cat-name">Çanta Femra</div>
-                    <div class="cat-cnt">68 modele</div><button class="cat-arrow">Shiko <i class="fas fa-arrow-right"></i></button>
+                    <div class="cat-cnt" id="cat-cnt-canta-femra">68 modele</div>
+                    <button class="cat-arrow">Shiko <i class="fas fa-arrow-right"></i></button>
                 </div>
             </div>
-            <div class="cat-card" onclick="fp('canta-meshkuj',null);sg('products')">
+            <div class="cat-card" data-cat="canta-meshkuj" onclick="fp('canta-meshkuj',null);sg('products')">
+                <img class="cat-bg-photo" id="cat-photo-canta-meshkuj" src="" alt="Çanta Meshkuj" style="opacity:0">
                 <div class="cat-bg"><i class="fas fa-briefcase"></i></div>
                 <div class="cat-veil"></div>
                 <div class="cat-info">
                     <div class="cat-tag">Premium</div>
                     <div class="cat-name">Çanta Meshkuj</div>
-                    <div class="cat-cnt">45 modele</div><button class="cat-arrow">Shiko <i class="fas fa-arrow-right"></i></button>
+                    <div class="cat-cnt" id="cat-cnt-canta-meshkuj">45 modele</div>
+                    <button class="cat-arrow">Shiko <i class="fas fa-arrow-right"></i></button>
                 </div>
             </div>
-            <div class="cat-card" onclick="fp('portofole',null);sg('products')">
+            <div class="cat-card" data-cat="portofole" onclick="fp('portofole',null);sg('products')">
+                <img class="cat-bg-photo" id="cat-photo-portofole" src="" alt="Portofole" style="opacity:0">
                 <div class="cat-bg"><i class="fas fa-wallet"></i></div>
                 <div class="cat-veil"></div>
                 <div class="cat-info">
                     <div class="cat-tag">Klasike</div>
                     <div class="cat-name">Portofole</div>
-                    <div class="cat-cnt">52 modele</div><button class="cat-arrow">Shiko <i class="fas fa-arrow-right"></i></button>
+                    <div class="cat-cnt" id="cat-cnt-portofole">52 modele</div>
+                    <button class="cat-arrow">Shiko <i class="fas fa-arrow-right"></i></button>
                 </div>
             </div>
-            <div class="cat-card" onclick="fp('bizhuteri',null);sg('products')">
+            <div class="cat-card" data-cat="bizhuteri" onclick="fp('bizhuteri',null);sg('products')">
+                <img class="cat-bg-photo" id="cat-photo-bizhuteri" src="" alt="Bizhuteri" style="opacity:0">
                 <div class="cat-bg"><i class="fas fa-gem"></i></div>
                 <div class="cat-veil"></div>
                 <div class="cat-info">
                     <div class="cat-tag">Fisnike</div>
                     <div class="cat-name">Bizhuteri</div>
-                    <div class="cat-cnt">87 modele</div><button class="cat-arrow">Shiko <i class="fas fa-arrow-right"></i></button>
+                    <div class="cat-cnt" id="cat-cnt-bizhuteri">87 modele</div>
+                    <button class="cat-arrow">Shiko <i class="fas fa-arrow-right"></i></button>
                 </div>
             </div>
         </div>
@@ -2375,13 +2490,16 @@
 
     <!-- PRODUCTS -->
     <section id="products">
-        <div class="sec-head"><span class="sec-sup"><i class="fas fa-diamond" style="font-size: 0.7em;"></i> Koleksioni ynë</span>
+        <div class="sec-head"><span class="sec-sup"><i class="fas fa-diamond" style="font-size: 0.7em;"></i> Koleksioni
+                ynë</span>
             <h2 class="sec-title">Produkte të Zgjedhura</h2>
         </div>
         <div class="filter-row" id="filter-row">
             <button class="f-btn active" onclick="fp('all',this)">Të gjitha</button>
-            <button class="f-btn" onclick="fp('canta-femra',this)"><i class="fas fa-shopping-bag"></i> Çanta Femra</button>
-            <button class="f-btn" onclick="fp('canta-meshkuj',this)"><i class="fas fa-briefcase"></i> Çanta Meshkuj</button>
+            <button class="f-btn" onclick="fp('canta-femra',this)"><i class="fas fa-shopping-bag"></i> Çanta
+                Femra</button>
+            <button class="f-btn" onclick="fp('canta-meshkuj',this)"><i class="fas fa-briefcase"></i> Çanta
+                Meshkuj</button>
             <button class="f-btn" onclick="fp('portofole',this)"><i class="fas fa-wallet"></i> Portofole</button>
             <button class="f-btn" onclick="fp('bizhuteri',this)"><i class="fas fa-gem"></i> Bizhuteri</button>
             <button class="f-btn" onclick="fp('sale',this)"><i class="fas fa-fire"></i> Sale</button>
@@ -2440,7 +2558,8 @@
 
     <!-- REVIEWS -->
     <section id="reviews">
-        <div class="sec-head"><span class="sec-sup"><i class="fas fa-diamond" style="font-size: 0.7em;"></i> Klientët tanë</span>
+        <div class="sec-head"><span class="sec-sup"><i class="fas fa-diamond" style="font-size: 0.7em;"></i> Klientët
+                tanë</span>
             <h2 class="sec-title">Çfarë thonë ata</h2>
         </div>
         <div class="rev-grid">
@@ -2506,8 +2625,10 @@
             <div><span class="foot-logo">AUR<span>Ë</span></span>
                 <p class="foot-desc">Dyqani juaj i aksesoreëve premium në Shqipëri. Çanta, portofole dhe bizhuteri me
                     cilësi të lartë dhe stil të pashkëputur.</p>
-                <div class="soc-row"><button class="soc-btn"><i class="fab fa-facebook"></i></button><button class="soc-btn"><i class="fab fa-instagram"></i></button><button
-                        class="soc-btn"><i class="fab fa-tiktok"></i></button><button class="soc-btn"><i class="fab fa-pinterest"></i></button></div>
+                <div class="soc-row"><button class="soc-btn"><i class="fab fa-facebook"></i></button><button
+                        class="soc-btn"><i class="fab fa-instagram"></i></button><button class="soc-btn"><i
+                            class="fab fa-tiktok"></i></button><button class="soc-btn"><i
+                            class="fab fa-pinterest"></i></button></div>
             </div>
             <div>
                 <div class="foot-title">Koleksionet</div>
@@ -2534,24 +2655,28 @@
                 <ul class="foot-links">
                     <li><a><i class="fas fa-map-marker-alt"></i> Tiranë, Shqipëri</a></li>
                     <li><a><i class="fas fa-phone"></i> +355 69 XXX XXXX</a></li>
-                    <li><a><i class="fas fa-envelope"></i> <span class="__cf_email__" data-cfemail="95fcfbf3fad5f4e0e7f0bbf4f9">[email&#160;protected]</span></a></li>
+                    <li><a><i class="fas fa-envelope"></i> <span class="__cf_email__"
+                                data-cfemail="95fcfbf3fad5f4e0e7f0bbf4f9">[email&#160;protected]</span></a></li>
                     <li><a><i class="fas fa-clock"></i> E Hënë–E Shtunë 9–18</a></li>
                 </ul>
             </div>
         </div>
         <div class="foot-bot">
             <p class="foot-copy">© 2025 AURË. Të gjitha të drejtat e rezervuara.</p>
-            <div class="pay-icons"><span><i class="fas fa-credit-card"></i></span><span><i class="fas fa-credit-card"></i></span><span><i class="fas fa-money-bill-wave"></i></span><span><i class="fas fa-lock"></i></span></div>
+            <div class="pay-icons"><span><i class="fas fa-credit-card"></i></span><span><i
+                        class="fas fa-credit-card"></i></span><span><i
+                        class="fas fa-money-bill-wave"></i></span><span><i class="fas fa-lock"></i></span></div>
         </div>
     </footer>
 
     <!-- CART -->
     <div id="cart-overlay" onclick="closeCart()"></div>
     <div id="cart-side">
-        <div class="cart-head"><span class="cart-ttl">Shporta Ime</span><button class="cart-x"
-                onclick="closeCart()"><i class="fas fa-times"></i></button></div>
+        <div class="cart-head"><span class="cart-ttl">Shporta Ime</span><button class="cart-x" onclick="closeCart()"><i
+                    class="fas fa-times"></i></button></div>
         <div class="cart-body" id="cart-body">
-            <div class="cart-empty-msg"><span class="ce-icon"><i class="fas fa-shopping-bag"></i></span>Shporta juaj është bosh</div>
+            <div class="cart-empty-msg"><span class="ce-icon"><i class="fas fa-shopping-bag"></i></span>Shporta juaj
+                është bosh</div>
         </div>
         <div class="cart-foot" id="cart-foot" style="display:none">
             <div class="c-sub"><span>Nëntotali</span><span id="c-sub-v">0 Lekë</span></div>
@@ -2582,7 +2707,8 @@
                 </div>
                 <div class="m-lbl">Ngjyra / Materiali</div>
                 <div class="col-row" id="m-colors"></div>
-                <button class="m-add" onclick="addFromMod()">Shto në Shportë <i class="fas fa-shopping-bag"></i></button>
+                <button class="m-add" onclick="addFromMod()">Shto në Shportë <i
+                        class="fas fa-shopping-bag"></i></button>
                 <button class="m-wish" onclick="wishFromMod()"><i class="far fa-heart"></i> Ruaj në Wishlist</button>
                 <div class="m-desc" id="m-desc"></div>
                 <div class="m-meta" id="m-meta"></div>
@@ -2591,7 +2717,8 @@
         <div id="chk-modal" style="display:none">
             <div id="chk-form">
                 <div class="chk-ttl">Porosit<button class="m-close" onclick="closeMod()"
-                        style="position:relative;top:0;right:0;flex-shrink:0"><i class="fas fa-times"></i></button></div>
+                        style="position:relative;top:0;right:0;flex-shrink:0"><i class="fas fa-times"></i></button>
+                </div>
                 <div class="ord-sum">
                     <div class="os-ttl">Detajet e Porosisë</div>
                     <div id="os-items"></div>
@@ -2621,7 +2748,8 @@
                         </select>
                     </div>
                 </div>
-                <button class="pord-btn" onclick="placeOrder()">Konfirmo Porosinë <i class="fas fa-arrow-right"></i></button>
+                <button class="pord-btn" onclick="placeOrder()">Konfirmo Porosinë <i
+                        class="fas fa-arrow-right"></i></button>
             </div>
             <div class="succ-screen" id="succ-view">
                 <span class="succ-ico"><i class="fas fa-check-circle"></i></span>
@@ -2635,8 +2763,103 @@
         </div>
     </div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        const products = [
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script>
+        // ── CONTENTFUL CONFIG ──────────────────────────────────────────────────
+        const SPACE_ID = 'ui4g1hyiq4ij';
+        const ACCESS_TOKEN = 'aVCiWO4XWj5cwbnU7-30vWq4S6yrrXkzODz2qem8ia8';
+        const CONTENTFUL_URL = `https://cdn.contentful.com/spaces/${SPACE_ID}/entries?content_type=product&limit=200&include=2&access_token=${ACCESS_TOKEN}`;
+
+        // Emoji map bazuar në kategorinë e produktit
+        const EMOJI_MAP = {
+            'canta-femra':   '<i class="fas fa-shopping-bag"></i>',
+            'canta-meshkuj': '<i class="fas fa-briefcase"></i>',
+            'portofole':     '<i class="fas fa-wallet"></i>',
+            'bizhuteri':     '<i class="fas fa-gem"></i>',
+        };
+
+        // Konverton entry-n e Contentful në objektin e produktit
+        function mapEntry(entry, includes) {
+            const f = entry.fields;
+            const cat = f.category || 'canta-femra';
+
+            // Merr URL-në e fotos nga includes.Asset
+            let imageUrl = null;
+            if (f.image && f.image.sys && includes && includes.Asset) {
+                const assetId = f.image.sys.id;
+                const asset = includes.Asset.find(a => a.sys.id === assetId);
+                if (asset && asset.fields && asset.fields.file) {
+                    imageUrl = 'https:' + asset.fields.file.url;
+                }
+            }
+
+            return {
+                id:       entry.sys.id,
+                name:     f.name        || 'Pa emër',
+                brand:    f.brand       || 'AURË',
+                cat:      cat,
+                emoji:    f.emoji       || EMOJI_MAP[cat] || '<i class="fas fa-shopping-bag"></i>',
+                image:    imageUrl,
+                price:    f.price       || 0,
+                oldPrice: f.oldPrice    || null,
+                rating:   f.rating      || 5.0,
+                reviews:  f.reviews     || 0,
+                tag:      f.tag         || null,
+                colors:   f.colors      || ['#8B4513'],
+                mat:      f.material    || 'Lëkurë',
+                sizes:    f.sizes       || ['One Size'],
+                desc:     f.description || '',
+            };
+        }
+
+        let products = [];
+        let productsLoaded = false;
+
+        async function loadProductsFromContentful() {
+            // Trego loader gjatë ngarkimit
+            document.getElementById('prod-grid').innerHTML = `
+                <div style="grid-column:1/-1;text-align:center;padding:80px 20px;">
+                    <div class="loader-ring" style="margin:0 auto 1rem;border-top-color:var(--gold);"></div>
+                    <p style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--warm);">Duke ngarkuar produktet...</p>
+                </div>`;
+
+            try {
+                const res = await fetch(CONTENTFUL_URL);
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const data = await res.json();
+
+                if (data.items && data.items.length > 0) {
+                    products = data.items.map(e => mapEntry(e, data.includes));
+                    productsLoaded = true;
+                    renderProds();
+                    updateMosaicBgs();
+                } else {
+                    // Nuk ka produkte në Contentful — trego mesazh udhëzues
+                    document.getElementById('prod-grid').innerHTML = `
+                        <div style="grid-column:1/-1;text-align:center;padding:80px 20px;">
+                            <div style="font-size:3rem;margin-bottom:1rem;"><i class="fas fa-box-open" style="color:var(--gold)"></i></div>
+                            <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--dark);margin-bottom:.8rem;">Asnjë produkt ende!</h3>
+                            <p style="color:var(--warm);font-size:.9rem;max-width:420px;margin:0 auto;line-height:1.7;">
+                                Shko te <strong>Contentful → Content → Add Entry</strong> dhe shto produktet e tua.<br>
+                                Content Type-i duhet të quhet <code style="background:var(--sand);padding:2px 6px;border-radius:3px;">product</code>
+                            </p>
+                        </div>`;
+                    document.getElementById('res-count').textContent = 'Asnjë produkt i ngarkuar';
+                }
+            } catch (err) {
+                console.error('Contentful error:', err);
+                document.getElementById('prod-grid').innerHTML = `
+                    <div style="grid-column:1/-1;text-align:center;padding:80px 20px;">
+                        <div style="font-size:2.5rem;margin-bottom:1rem;"><i class="fas fa-exclamation-triangle" style="color:var(--rose)"></i></div>
+                        <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--dark);margin-bottom:.8rem;">Gabim gjatë ngarkimit</h3>
+                        <p style="color:var(--warm);font-size:.85rem;">${err.message}</p>
+                        <button class="btn-dark" style="margin-top:1.2rem" onclick="loadProductsFromContentful()">Provo Përsëri</button>
+                    </div>`;
+            }
+        }
+
+        // Produktet statike (ruhen si backup nëse Contentful nuk ka asgjë)
+        const staticProducts = [
             // CANTA FEMRA
             { id: 1, name: 'Çantë Tote Milano', brand: 'AURË Donna', cat: 'canta-femra', emoji: '<i class="fas fa-shopping-bag"></i>', price: 5800, oldPrice: 8200, rating: 4.9, reviews: 143, tag: 'sale', colors: ['#8B4513', '#1C1410', '#C8A2C8'], mat: 'Lëkurë e butë italiane', sizes: ['S', 'M', 'L'], desc: 'Çantë tote spacioze me hapësirat e brendshme të shumta. Ideal për punë dhe dalje. Lëkurë 100% natyrale me mbushje pambuku.' },
             { id: 2, name: 'Mini Bag Elegante', brand: 'AURË Donna', cat: 'canta-femra', emoji: '<i class="fas fa-shopping-bag"></i>', price: 3400, oldPrice: null, rating: 4.7, reviews: 89, tag: 'new', colors: ['#C8A2C8', '#E8C4B8', '#2F4F4F'], mat: 'Lëkurë napa', sizes: ['One Size'], desc: 'Mini çantë me zinxhir të artë, perfekte për mbrëmjet speciale dhe eventeve elegante.' },
@@ -2665,7 +2888,17 @@
         let cart = [], wishlist = [], curFilter = 'all', curSort = 'default', visibleCnt = 12, curProd = null, selSz = null, selCol = null;
         try { cart = JSON.parse(localStorage.getItem('aure-cart') || '[]'); wishlist = JSON.parse(localStorage.getItem('aure-wish') || '[]'); } catch (e) { }
 
-        window.addEventListener('load', () => { setTimeout(() => { document.getElementById('loader').classList.add('hidden'); renderProds(); updCartBadge(); updWishBadge(); }, 1400); });
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+                updCartBadge();
+                updWishBadge();
+                // Ngarko nga Contentful; nëse dështon, ruajmë produktet statike si fallback
+                loadProductsFromContentful().catch(() => {
+                    if (!productsLoaded) { products = [...staticProducts]; renderProds(); updateMosaicBgs(); }
+                });
+            }, 1400);
+        });
         window.addEventListener('scroll', () => { document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 80); });
 
         function sg(id) { document.getElementById(id).scrollIntoView({ behavior: 'smooth' }); }
@@ -2679,23 +2912,57 @@
             return list;
         }
 
+        // Vendos foton e parë të çdo kategorie si background i mosaic cell dhe cat-card
+        function updateMosaicBgs() {
+            ['canta-femra', 'canta-meshkuj', 'portofole', 'bizhuteri'].forEach(cat => {
+                const catProds = products.filter(p => p.cat === cat);
+                const prod = catProds.find(p => p.image);
+
+                // --- mosaic hero ---
+                const mEl = document.getElementById('bg-' + cat);
+                if (mEl && prod) {
+                    mEl.src = prod.image + '?w=600&fm=webp&q=75';
+                    mEl.style.opacity = '';
+                } else if (mEl) {
+                    mEl.style.opacity = '0';
+                }
+
+                // --- category section cards ---
+                const cEl = document.getElementById('cat-photo-' + cat);
+                if (cEl && prod) {
+                    cEl.src = prod.image + '?w=900&fm=webp&q=80';
+                    cEl.style.opacity = '1';
+                    cEl.style.transition = 'opacity .6s ease, transform .7s cubic-bezier(.25,.46,.45,.94)';
+                    cEl.closest('.cat-card').classList.add('has-photo');
+                }
+
+                // --- numri real i produkteve ---
+                const cntEl = document.getElementById('cat-cnt-' + cat);
+                if (cntEl && catProds.length > 0) {
+                    cntEl.textContent = catProds.length + ' modele';
+                }
+            });
+        }
+
         function renderProds() {
             const list = getProds(), grid = document.getElementById('prod-grid'), shown = list.slice(0, visibleCnt);
             document.getElementById('res-count').textContent = `Duke shfaqur ${shown.length} nga ${list.length} produkte`;
             document.getElementById('lm-btn').style.display = list.length > visibleCnt ? 'inline-block' : 'none';
             grid.innerHTML = '';
             shown.forEach((p, i) => {
-                const wd = wishlist.includes(p.id);
+                const wd = wishlist.includes(String(p.id));
                 const c = document.createElement('div'); c.className = 'p-card'; c.style.animationDelay = `${i * .06}s`;
                 c.innerHTML = `
-      <div class="p-img" onclick="openMod(event,${p.id})">
+      <div class="p-img" onclick="openMod(event,'${p.id}')">
         ${p.tag ? `<span class="p-tag tag-${p.tag}">${p.tag === 'new' ? 'I Ri' : p.tag === 'sale' ? 'Sale' : p.tag === 'hot' ? '<i class="fas fa-fire"></i> Hot' : 'Ltd'}</span>` : ''}
         <div class="p-acts">
-          <button class="p-act ${wd ? 'liked' : ''}" onclick="toggleWish(event,${p.id})">${wd ? '<i class="fas fa-heart"></i>' : '<i class="far fa-heart"></i>'}</button>
-          <button class="p-act" onclick="openMod(event,${p.id})"><i class="fas fa-search"></i></button>
+          <button class="p-act ${wd ? 'liked' : ''}" onclick="toggleWish(event,'${p.id}')">${wd ? '<i class="fas fa-heart"></i>' : '<i class="far fa-heart"></i>'}</button>
+          <button class="p-act" onclick="openMod(event,'${p.id}')"><i class="fas fa-search"></i></button>
         </div>
-        <span class="p-emoji">${p.emoji}</span>
-        <button class="p-qadd" onclick="quickAdd(event,${p.id})">+ Shto në Shportë</button>
+        ${p.image
+            ? `<img class="p-img-photo" src="${p.image}?w=600&fm=webp&q=80" alt="${p.name}" loading="lazy">`
+            : `<span class="p-emoji">${p.emoji}</span>`}
+        <button class="p-qadd" onclick="quickAdd(event,'${p.id}')">+ Shto në Shportë</button>
       </div>
       <div class="p-info">
         <div class="p-brand">${p.brand}</div>
@@ -2719,19 +2986,34 @@
         }
         function sortP(v) { curSort = v; renderProds(); }
         function loadMore() { visibleCnt += 8; renderProds(); }
-        function quickAdd(e, id) { e.stopPropagation(); const p = products.find(x => x.id === id); addToCart(p, p.sizes[0], p.colors[0]); }
+        function quickAdd(e, id) { e.stopPropagation(); const p = products.find(x => String(x.id) === String(id)); if(p) addToCart(p, p.sizes[0], p.colors[0]); }
 
         function addToCart(prod, sz, col) {
-            const ex = cart.find(i => i.id === prod.id && i.sz === sz);
+            const ex = cart.find(i => String(i.id) === String(prod.id) && i.sz === sz);
             if (ex) ex.qty++; else cart.push({ ...prod, sz: sz || prod.sizes[0], col: col || prod.colors[0], qty: 1 });
             saveCart(); updCartBadge(); showNotif('<i class="fas fa-check"></i>', `${prod.name} u shtua në shportë!`);
         }
 
         function openMod(e, id) {
             e && e.stopPropagation();
-            const p = products.find(x => x.id === id); curProd = p; selSz = p.sizes[0]; selCol = p.colors[0];
-            document.getElementById('m-emoji').textContent = p.emoji;
-            document.getElementById('m-emoji').style.fontSize = '7.5rem';
+            const p = products.find(x => String(x.id) === String(id)); if(!p) return; curProd = p; selSz = p.sizes[0]; selCol = p.colors[0];
+            // Foto ose emoji në modal
+            const mImg = document.getElementById('m-img');
+            const mEmoji = document.getElementById('m-emoji');
+            // Hiq foton e mëparshme nëse ekziston
+            mImg.querySelectorAll('.m-img-photo').forEach(el => el.remove());
+            if (p.image) {
+                const ph = document.createElement('img');
+                ph.className = 'm-img-photo';
+                ph.src = p.image + '?w=800&fm=webp&q=85';
+                ph.alt = p.name;
+                mImg.appendChild(ph);
+                mEmoji.style.display = 'none';
+            } else {
+                mEmoji.style.display = '';
+                mEmoji.innerHTML = p.emoji;
+                mEmoji.style.fontSize = '7.5rem';
+            }
             document.getElementById('m-brand').textContent = p.brand;
             document.getElementById('m-name').textContent = p.name;
             document.getElementById('m-stars').textContent = '★'.repeat(Math.floor(p.rating)) + '☆'.repeat(5 - Math.floor(p.rating));
@@ -2769,27 +3051,27 @@
             const ship = total >= 3000 ? 0 : 300;
             body.innerHTML = cart.map(item => `
     <div class="c-item">
-      <div class="c-item-img">${item.emoji}</div>
+      <div class="c-item-img">${item.image ? `<img src="${item.image}?w=120&fm=webp&q=70" style="width:100%;height:100%;object-fit:cover;border-radius:4px;" alt="${item.name}">` : item.emoji}</div>
       <div>
         <div class="c-iname">${item.name}</div>
         <div class="c-isize">${item.sz} · ${item.mat}</div>
         <div class="c-qty">
-          <button class="q-btn" onclick="chgQty(${item.id},'${item.sz}',-1)">−</button>
+          <button class="q-btn" onclick="chgQty('${item.id}','${item.sz}',-1)">−</button>
           <span class="q-n">${item.qty}</span>
-          <button class="q-btn" onclick="chgQty(${item.id},'${item.sz}',1)">+</button>
+          <button class="q-btn" onclick="chgQty('${item.id}','${item.sz}',1)">+</button>
         </div>
       </div>
       <div style="display:flex;flex-direction:column;align-items:flex-end;gap:5px">
         <span class="c-iprice">${(item.price * item.qty).toLocaleString()} Lekë</span>
-        <button class="c-irm" onclick="rmItem(${item.id},'${item.sz}')"><i class="fas fa-times"></i></button>
+        <button class="c-irm" onclick="rmItem('${item.id}','${item.sz}')"><i class="fas fa-times"></i></button>
       </div>
     </div>`).join('');
             document.getElementById('c-sub-v').textContent = `${total.toLocaleString()} Lekë`;
             document.getElementById('c-ship').textContent = ship === 0 ? 'Falas' : '300 Lekë';
             document.getElementById('c-tot-v').textContent = `${(total + ship).toLocaleString()} Lekë`;
         }
-        function chgQty(id, sz, d) { const i = cart.find(x => x.id === id && x.sz === sz); if (!i) return; i.qty += d; if (i.qty <= 0) cart = cart.filter(x => !(x.id === id && x.sz === sz)); saveCart(); updCartBadge(); renderCart(); }
-        function rmItem(id, sz) { cart = cart.filter(x => !(x.id === id && x.sz === sz)); saveCart(); updCartBadge(); renderCart(); }
+        function chgQty(id, sz, d) { const i = cart.find(x => String(x.id) === String(id) && x.sz === sz); if (!i) return; i.qty += d; if (i.qty <= 0) cart = cart.filter(x => !(String(x.id) === String(id) && x.sz === sz)); saveCart(); updCartBadge(); renderCart(); }
+        function rmItem(id, sz) { cart = cart.filter(x => !(String(x.id) === String(id) && x.sz === sz)); saveCart(); updCartBadge(); renderCart(); }
         function clearCart() { cart = []; saveCart(); updCartBadge(); }
         function saveCart() { try { localStorage.setItem('aure-cart', JSON.stringify(cart)); } catch (e) { } }
         function updCartBadge() { const t = cart.reduce((s, i) => s + i.qty, 0), b = document.getElementById('cart-badge'); b.textContent = t; b.classList.remove('bump'); void b.offsetWidth; b.classList.add('bump'); }
@@ -2813,19 +3095,40 @@
 
         function toggleWish(e, id) {
             e && e.stopPropagation();
-            if (wishlist.includes(id)) { wishlist = wishlist.filter(x => x !== id); showNotif('<i class="far fa-heart"></i>', 'Hequr nga Wishlist'); }
-            else { wishlist.push(id); showNotif('<i class="fas fa-heart"></i>', 'Shtuar në Wishlist!'); }
+            const sid = String(id);
+            if (wishlist.includes(sid)) { wishlist = wishlist.filter(x => x !== sid); showNotif('<i class="far fa-heart"></i>', 'Hequr nga Wishlist'); }
+            else { wishlist.push(sid); showNotif('<i class="fas fa-heart"></i>', 'Shtuar në Wishlist!'); }
             try { localStorage.setItem('aure-wish', JSON.stringify(wishlist)); } catch (e) { }
             updWishBadge(); renderProds();
         }
         function updWishBadge() { const b = document.getElementById('wish-count'); b.textContent = wishlist.length; b.style.display = wishlist.length > 0 ? 'flex' : 'none'; }
         function showWishlist() {
             if (wishlist.length === 0) { showNotif('<i class="far fa-heart"></i>', 'Wishlist-i është bosh'); return; }
-            const wlist = products.filter(p => wishlist.includes(p.id));
+            const wlist = products.filter(p => wishlist.includes(String(p.id)));
             const grid = document.getElementById('prod-grid'); grid.innerHTML = '';
             document.getElementById('res-count').textContent = `Wishlist: ${wlist.length} produkte`;
             document.getElementById('lm-btn').style.display = 'none';
-            wlist.forEach((p, i) => { const c = document.createElement('div'); c.className = 'p-card'; c.style.animationDelay = `${i * .06}s`; c.innerHTML = `<div class="p-img" onclick="openMod(event,${p.id})"><div class="p-acts" style="transform:translateX(0)"><button class="p-act liked" onclick="toggleWish(event,${p.id})"><i class="fas fa-heart"></i></button></div><span class="p-emoji">${p.emoji}</span><button class="p-qadd" onclick="quickAdd(event,${p.id})">+ Shto në Shportë</button></div><div class="p-info"><div class="p-brand">${p.brand}</div><div class="p-name">${p.name}</div><div class="p-price"><span class="p-cur">${p.price.toLocaleString()} Lekë</span></div><div class="p-mat">${p.mat}</div></div>`; grid.appendChild(c); });
+            wlist.forEach((p, i) => {
+                const c = document.createElement('div'); c.className = 'p-card'; c.style.animationDelay = `${i * .06}s`;
+                c.innerHTML = `
+                  <div class="p-img" onclick="openMod(event,'${p.id}')">
+                    <div class="p-acts" style="transform:translateX(0)">
+                      <button class="p-act liked" onclick="toggleWish(event,'${p.id}')"><i class="fas fa-heart"></i></button>
+                    </div>
+                    ${p.image ? `<img class="p-img-photo" src="${p.image}?w=600&fm=webp&q=80" alt="${p.name}" loading="lazy">` : `<span class="p-emoji">${p.emoji}</span>`}
+                    <button class="p-qadd" onclick="quickAdd(event,'${p.id}')">+ Shto në Shportë</button>
+                  </div>
+                  <div class="p-info">
+                    <div class="p-brand">${p.brand}</div>
+                    <div class="p-name">${p.name}</div>
+                    <div class="p-price">
+                      <span class="p-cur">${p.price.toLocaleString()} Lekë</span>
+                      ${p.oldPrice ? `<span class="p-old">${p.oldPrice.toLocaleString()} Lekë</span>` : ''}
+                    </div>
+                    <div class="p-mat">${p.mat}</div>
+                  </div>`;
+                grid.appendChild(c);
+            });
             sg('products');
         }
 
@@ -2838,8 +3141,35 @@
             const grid = document.getElementById('prod-grid'); grid.innerHTML = '';
             document.getElementById('res-count').textContent = `Rezultate për "${q}": ${res.length}`;
             document.getElementById('lm-btn').style.display = 'none';
-            if (!res.length) { grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:60px;font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--warm)">Nuk u gjet asnjë produkt për "${q}"</div>`; }
-            else res.forEach((p, i) => { const c = document.createElement('div'); c.className = 'p-card'; c.style.animationDelay = `${i * .06}s`; c.innerHTML = `<div class="p-img" onclick="openMod(event,${p.id})">${p.tag ? `<span class="p-tag tag-${p.tag}">${p.tag === 'new' ? 'I Ri' : p.tag === 'sale' ? 'Sale' : '<i class="fas fa-fire"></i> Hot'}</span>` : ''}<span class="p-emoji">${p.emoji}</span><button class="p-qadd" onclick="quickAdd(event,${p.id})">+ Shto në Shportë</button></div><div class="p-info"><div class="p-brand">${p.brand}</div><div class="p-name">${p.name}</div><div class="p-price"><span class="p-cur">${p.price.toLocaleString()} Lekë</span>${p.oldPrice ? `<span class="p-old">${p.oldPrice.toLocaleString()} Lekë</span>` : ''}</div><div class="p-mat">${p.mat}</div></div>`; grid.appendChild(c); });
+            if (!res.length) {
+                grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:60px;font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--warm)">Nuk u gjet asnjë produkt për "${q}"</div>`;
+            } else {
+                res.forEach((p, i) => {
+                    const wd = wishlist.includes(String(p.id));
+                    const c = document.createElement('div'); c.className = 'p-card'; c.style.animationDelay = `${i * .06}s`;
+                    c.innerHTML = `
+                      <div class="p-img" onclick="openMod(event,'${p.id}')">
+                        ${p.tag ? `<span class="p-tag tag-${p.tag}">${p.tag === 'new' ? 'I Ri' : p.tag === 'sale' ? 'Sale' : '<i class="fas fa-fire"></i> Hot'}</span>` : ''}
+                        <div class="p-acts">
+                          <button class="p-act ${wd ? 'liked' : ''}" onclick="toggleWish(event,'${p.id}')">${wd ? '<i class="fas fa-heart"></i>' : '<i class="far fa-heart"></i>'}</button>
+                          <button class="p-act" onclick="openMod(event,'${p.id}')"><i class="fas fa-search"></i></button>
+                        </div>
+                        ${p.image ? `<img class="p-img-photo" src="${p.image}?w=600&fm=webp&q=80" alt="${p.name}" loading="lazy">` : `<span class="p-emoji">${p.emoji}</span>`}
+                        <button class="p-qadd" onclick="quickAdd(event,'${p.id}')">+ Shto në Shportë</button>
+                      </div>
+                      <div class="p-info">
+                        <div class="p-brand">${p.brand}</div>
+                        <div class="p-name">${p.name}</div>
+                        <div class="p-rating"><span class="stars">${'★'.repeat(Math.floor(p.rating))}${'☆'.repeat(5 - Math.floor(p.rating))}</span><span class="rcnt">(${p.reviews})</span></div>
+                        <div class="p-price">
+                          <span class="p-cur">${p.price.toLocaleString()} Lekë</span>
+                          ${p.oldPrice ? `<span class="p-old">${p.oldPrice.toLocaleString()} Lekë</span><span class="p-disc">-${Math.round((1 - p.price / p.oldPrice) * 100)}%</span>` : ''}
+                        </div>
+                        <div class="p-mat">${p.mat}</div>
+                      </div>`;
+                    grid.appendChild(c);
+                });
+            }
             sg('products');
         }
         document.getElementById('search-input').addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(); if (e.key === 'Escape') toggleSearch(); });
@@ -2853,7 +3183,8 @@
         let ntTimer = null;
         function showNotif(ico, txt) {
             const n = document.getElementById('notification');
-            document.getElementById('n-ico').textContent = ico; document.getElementById('n-txt').textContent = txt;
+            document.getElementById('n-ico').innerHTML = ico;
+            document.getElementById('n-txt').innerHTML = txt;
             n.classList.add('show'); clearTimeout(ntTimer); ntTimer = setTimeout(() => n.classList.remove('show'), 3200);
         }
 
